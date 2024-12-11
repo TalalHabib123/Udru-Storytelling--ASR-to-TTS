@@ -1,16 +1,15 @@
 import React from "react";
-import "./homePage.css";
+import Background from "../components/background";
 import Recording from "../components/recording";
 
 const HomePage = () => {
   return (
     <div className="homepage">
+      <Background />
       <div className="content">
         <h1>Creatially</h1>
         <p>Where stories come to life</p>
-        <div>
-          <Recording />
-        </div>
+        <Recording />
       </div>
     </div>
   );

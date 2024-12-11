@@ -1,14 +1,9 @@
 
 import './App.css';
-import HomePage from './pages/homePage';
+import homePage from './components/homePage';
 
-
-function App() {
-  return (
-    <div >
-      <HomePage />
-    </div>
-  );
-}
+const App = () => {
+  return <homePage />;
+};
 
 export default App;
