@@ -1,0 +1,112 @@
+/* homePage.css */
+.homepage {
+  margin: 0px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the start (left) */
+  justify-content: center;
+  margin: 80px;
+  color: white; /* Set text color to white */
+}
+
+.content h1 {
+  font-size: 3rem;
+  padding: 0px;
+  margin: 10px 0 20px 0; /* Add more space below the heading */
+}
+
+.content p {
+  font-size: 1.5rem;
+  padding: 0px;
+  margin: 3px 0 20px 0; /* Add more space below the paragraph */
+}
+
+/* Media queries for responsive font sizes */
+@media (min-width: 600px) {
+  .content h1 {
+    font-size: 3rem;
+  }
+
+  .content p {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .content h1 {
+    font-size: 3rem;
+  }
+
+  .content p {
+    font-size: 1.5rem;
+  }
+}
+
+.microphone-button {
+  display: flex;
+  align-items: center;
+}
+
+.mic-btn {
+  margin: 10px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.clear-btn {
+  margin: 10px;
+  padding: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  background: linear-gradient(90deg, #0505a7, purple);
+  color: white;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  border: none;
+  border-radius: 10px;
+  transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.clear-btn:hover {
+  background: rgb(153, 153, 153);
+  color: black;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.waveform {
+  width: 300px;
+  height: 100px;
+  margin-left: 20px;
+  display: none;
+}
+
+.waveform.visible {
+  display: inline-block;
+}
+
+.waveform.hidden {
+  display: none;
+}
+
+.recording-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top:100px;
+}
+
+.buttin {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.transcript {
+  margin-top: 10px;
+  color: white;
+}
