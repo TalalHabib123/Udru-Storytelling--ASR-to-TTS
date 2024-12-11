@@ -4,7 +4,7 @@ import uuid
 from app.utils.text.categories import handle_text_message
 from app.utils.audio.handle_audio import save_audio_as_wav
 from app.utils.socket.connection_manager import ConnectionManager
-from app.utils.pipeline.pipeline import process_pipeline
+from pipeline import process_pipeline
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import FileResponse
@@ -43,18 +43,18 @@ async def websocket_endpoint(websocket: WebSocket):
                     await manager.send_message(websocket, json.dumps(response))
                 elif not "bytes" in data:
                     raise Exception("Invalid message format")
-                    
+
                 audio_bytes = data["bytes"]
                 response, file_path = await save_audio_as_wav(websocket, audio_bytes, file_id)
                 await manager.send_message(websocket, json.dumps(response))
                 if file_path== "":
                         raise Exception("Error in saving audio file")
-                    
+
                 response = process_pipeline(file_path, file_id)
                 if response["status"] == "error":
                     await manager.send_message(websocket, json.dumps(response))
                     raise Exception(response["message"])
-                
+
                 await manager.send_message(websocket, json.dumps(response))
                 if ws_connections[file_id]:
                     manager.disconnect(ws_connections[file_id])

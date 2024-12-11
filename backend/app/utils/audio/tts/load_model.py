@@ -12,9 +12,9 @@ def load_model(type: str):
         elif type == "arabic":
             model = VitsModel.from_pretrained("facebook/mms-tts-urd-script_arabic")
             tokenizer = AutoTokenizer.from_pretrained("facebook/mms-tts-urd-script_arabic")
-        
+
         model.to(get_device())
-        tokenizer.to(get_device())
+        # tokenizer.to(get_device())
         return model, tokenizer
     except Exception as e:
         print(f"Error loading model: {e}")
