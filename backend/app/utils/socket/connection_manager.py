@@ -10,9 +10,9 @@ class ConnectionManager:
         self.active_connections.append(websocket)
         print(f"Client connected: {websocket.client}")
 
-    def disconnect(self, websocket: WebSocket):
+    async def disconnect(self, websocket: WebSocket):
         if websocket in self.active_connections:
-            websocket.close()
+            await websocket.close()
             self.active_connections.remove(websocket)
         print(f"Client disconnected: {websocket.client}")
 

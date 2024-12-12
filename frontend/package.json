@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "StoryWave",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,23 +10,33 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "lucide-react": "^0.468.0",
+    "@heroicons/react": "^2.2.0",
+    "axios": "^1.7.9",
+    "flowbite": "^2.5.2",
+    "flowbite-react": "^0.10.2",
+    "lucide-react": "^0.451.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-query": "^3.39.3",
+    "react-router-dom": "^6.26.2",
+    "StoryWave": "file:",
+    "virtulectra-frontend": "file:",
+    "wavesurfer.js": "^7.8.10"
   },
   "devDependencies": {
-    "@eslint/js": "^9.15.0",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "^4.3.4",
-    "autoprefixer": "^10.4.12",
-    "eslint": "^9.15.0",
-    "eslint-plugin-react": "^7.37.2",
-    "eslint-plugin-react-hooks": "^5.0.0",
-    "eslint-plugin-react-refresh": "^0.4.14",
-    "globals": "^15.12.0",
-    "postcss": "^8.4.16",
-    "tailwindcss": "^3.2.7",
-    "vite": "^6.0.1"
+    "@eslint/js": "^9.11.1",
+    "@types/react": "^18.3.10",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.2",
+    "autoprefixer": "^10.4.20",
+    "daisyui": "^4.12.13",
+    "eslint": "^9.11.1",
+    "eslint-plugin-react": "^7.37.0",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.12",
+    "globals": "^15.9.0",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "vite": "^5.4.8"
   }
 }

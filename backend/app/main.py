@@ -4,12 +4,23 @@ import uuid
 from app.utils.text.categories import handle_text_message
 from app.utils.audio.handle_audio import save_audio_as_wav
 from app.utils.socket.connection_manager import ConnectionManager
-from pipeline import process_pipeline
+from app.utils.pipeline.pipeline import process_pipeline
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import FileResponse
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI(title="WebSocket Audio & JSON Handler")
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Adjust this to the specific origins you want to allow
+    allow_credentials=True,
+    allow_methods=["*"],  # Adjust this to the specific methods you want to allow
+    allow_headers=["*"],  # Adjust this to the specific headers you want to allow
+)
 
 manager = ConnectionManager()
 
@@ -23,7 +34,7 @@ async def read_root():
 # Route to get the audio file
 @app.get("/get-audio/{file_id}")
 async def get_audio(file_id: str):
-    file_path = f"tts_outputs/{file_id}.wav"
+    file_path = f"synthesized_audio/{file_id}.wav"
     return FileResponse(path=file_path, media_type="audio/wav", filename=f"{file_id}.wav")
 
 # WebSocket route
@@ -45,6 +56,7 @@ async def websocket_endpoint(websocket: WebSocket):
                     raise Exception("Invalid message format")
 
                 audio_bytes = data["bytes"]
+                print(f"Received audio bytes: {len(audio_bytes)}")
                 response, file_path = await save_audio_as_wav(websocket, audio_bytes, file_id)
                 await manager.send_message(websocket, json.dumps(response))
                 if file_path== "":
@@ -57,7 +69,7 @@ async def websocket_endpoint(websocket: WebSocket):
 
                 await manager.send_message(websocket, json.dumps(response))
                 if ws_connections[file_id]:
-                    manager.disconnect(ws_connections[file_id])
+                    await manager.disconnect(ws_connections[file_id])
                     del ws_connections[file_id]
 
             elif data["type"] == "websocket.disconnect":

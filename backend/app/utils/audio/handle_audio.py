@@ -23,9 +23,11 @@ async def save_audio_as_wav(websocket: WebSocket, audio_bytes: bytes, file_id: s
 
         # Process the raw audio bytes with pydub
         # Adjust the parameters based on the client-side recording configuration
-        audio = AudioSegment.from_file(io.BytesIO(audio_bytes), format="raw", 
-                                       frame_rate=44100, channels=1, sample_width=2)
-        audio.export(file_path_wav, format="wav")
+        # audio = AudioSegment.from_file(io.BytesIO(audio_bytes), format="raw",
+                                        # sample_width=2)
+        # audio.export(file_path_wav, format="wav")
+        with open(file_path_wav, "wb") as f:
+            f.write(audio_bytes)
 
         print(f"Audio saved as WAV: {file_path_wav}")
         response = {
@@ -44,4 +46,3 @@ async def save_audio_as_wav(websocket: WebSocket, audio_bytes: bytes, file_id: s
             "error": str(e)
         }
         return response, None
-    
